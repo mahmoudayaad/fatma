@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>إلى فاطمة روح قلبي ❤️</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: sans-serif; }
+        body { background-color: #0b0005; color: #fff; overflow: hidden; display: flex; justify-content: center; align-items: center; height: 100vh; text-align: center; position: relative; }
+        #login-screen { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #0b0005; z-index: 10; display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 20px; }
+        .login-box { background: rgba(255, 255, 255, 0.03); padding: 40px 30px; border-radius: 20px; border: 1px solid rgba(255, 107, 157, 0.2); max-width: 400px; width: 100%; }
+        h2 { color: #ff6b9d; margin-bottom: 20px; }
+        input { width: 100%; padding: 12px 20px; border-radius: 25px; border: 1px solid #ff6b9d; background: transparent; color: #fff; text-align: center; font-size: 1.1rem; margin-bottom: 20px; outline: none; }
+        button { background: linear-gradient(45deg, #ff1744, #ff6b9d); color: #fff; border: none; padding: 12px 35px; border-radius: 25px; font-size: 1.1rem; cursor: pointer; font-weight: bold; }
+        .error-msg { color: #ff1744; margin-top: 15px; display: none; }
+        #main-content { display: none; width: 90%; max-width: 700px; z-index: 2; padding: 20px; }
+        h1 { font-size: 2.8rem; color: #ff6b9d; text-shadow: 0 0 15px rgba(255, 107, 157, 0.5); margin-bottom: 10px; }
+        .timer-container { display: flex; justify-content: center; gap: 15px; margin-bottom: 40px; flex-wrap: wrap; }
+        .timer-box { background: rgba(255, 107, 157, 0.08); border: 1px solid rgba(255, 107, 157, 0.3); padding: 15px; border-radius: 15px; min-width: 90px; }
+        .timer-num { font-size: 2.2rem; font-weight: bold; color: #fff; }
+        .timer-label { font-size: 0.9rem; color: #ff6b9d; margin-top: 5px; }
+        .love-letter { background: rgba(255, 255, 255, 0.02); border-right: 4px solid #ff6b9d; padding: 25px; border-radius: 4px 15px 15px 4px; text-align: right; line-height: 1.8; font-size: 1.15rem; color: #f0f0f0; margin-bottom: 30px; }
+        .heart { position: absolute; color: rgba(255, 107, 157, 0.4); pointer-events: none; animation: float linear infinite; z-index: 1; }
+        @keyframes float {
+            0% { transform: translateY(105vh) scale(0); opacity: 1; }
+            100% { transform: translateY(-10vh) scale(1); opacity: 0; }
+        }
+    </style>
+</head>
+<body>
+
+    <div id="login-screen">
+        <div class="login-box">
+            <h2>مفاجأة خاصة لكِ ❤️</h2>
+            <input type="password" id="password-input" placeholder="أدخلي كلمة المرور السرية...">
+            <button onclick="checkPassword()">افتحي القفل ✨</button>
+            <div id="error-msg" class="error-msg">كلمة المرور غير صحيحة، حاولي مجدداً يا روحي.</div>
+        </div>
+    </div>
+
+    <audio id="bg-music" loop>
+        <source src="https://soundhelix.com" type="audio/mp3">
+    </audio>
+
+    <div id="main-content">
+        <h1>To Fatmaaa ❤️</h1>
+        <div style="color:rgba(255,255,255,0.7); margin-bottom:30px;">كل ثانية وأنتِ معي هي حياة جديدة</div>
+
+        <div class="timer-container">
+            <div class="timer-box"><div class="timer-num" id="days">00</div><div class="timer-label">أيام</div></div>
+            <div class="timer-box"><div class="timer-num" id="hours">00</div><div class="timer-label">ساعات</div></div>
+            <div class="timer-box"><div class="timer-num" id="minutes">00</div><div class="timer-label">دقائق</div></div>
+            <div class="timer-box"><div class="timer-num" id="seconds">00</div><div class="timer-label">ثواني</div></div>
+        </div>
+
+        <div class="love-letter">
+            إلى فاطمة.. روح قلبي وأغلى ما أملك في هذا الكون. منذ أن دخلتِ حياتي في 28/9/2023 والعالم في عيوني قد تلوّن بوجودكِ فقط. أنتِ لستِ مجرد شخصٍ أحببته، أنتِ الدنيا بأكملها، وعمري ما تمنيت أو هبص لغيرك لأنكِ ملأتِ قلبي وعيني ولا بديل لكِ عندي. أحبكِ اليوم، وغداً، وإلى نهاية العمر.
+        </div>
+    </div>
+
+    <script>
+        function checkPassword() {
+            const password = document.getElementById('password-input').value;
+            const errorMsg = document.getElementById('error-msg');
+            const music = document.getElementById('bg-music');
+            
+            if (password === 'Fatmaaa') {
+                document.getElementById('login-screen').style.display = 'none';
+                document.getElementById('main-content').style.display = 'block';
+                music.play().catch(e => console.log("Audio play deferred"));
+                setInterval(updateTimer, 1000);
+                setInterval(createHeart, 300);
+            } else {
+                errorMsg.style.display = 'block';
+            }
+        }
+
+        function updateTimer() {
+            const startDate = new Date('2023-09-28T00:00:00');
+            const now = new Date();
+            const difference = now - startDate;
+            const d = Math.floor(difference / (1000 * 60 * 60 * 24));
+            const h = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const m = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
+            const s = Math.floor((difference % (1000 * 60)) / 1000);
+            document.getElementById('days').innerText = d;
+            document.getElementById('hours').innerText = h;
+            document.getElementById('minutes').innerText = m;
+            document.getElementById('seconds').innerText = s;
+        }
+
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.classList.add('heart');
+            heart.innerHTML = '❤️';
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.animationDuration = Math.random() * 3 + 3 + 's';
+            document.body.appendChild(heart);
+            setTimeout(() => heart.remove(), 6000);
+        }
+    </script>
+</body>
+</html>
